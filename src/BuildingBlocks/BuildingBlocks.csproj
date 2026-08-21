@@ -1,7 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>DesignShowcase.BuildingBlocks</RootNamespace>
   </PropertyGroup>
-
+ 
+  <!--
+    意図的に外部パッケージへの参照を持たない。
+    ドメイン層の基盤ライブラリはインフラ(EF Core, JSON, etc.)に依存しないという設計判断を
+    csprojレベルでも表明している。
+  -->
+ 
 </Project>
