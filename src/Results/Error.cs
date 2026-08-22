@@ -20,6 +20,12 @@ public readonly struct Error : IEquatable<Error>
     /// <summary>人間が読むためのメッセージ。ログやUI表示に使う想定。</summary>
     public string Message { get; }
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="code"></param>
+    /// <param name="message"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public Error(string code, string message)
     {
         Code = code ?? throw new ArgumentNullException(nameof(code));
@@ -31,15 +37,45 @@ public readonly struct Error : IEquatable<Error>
     /// </summary>
     public static readonly Error None = new(string.Empty, string.Empty);
 
+    /// <summary>
+    /// 等価性を判定する
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
     public bool Equals(Error other) => Code == other.Code && Message == other.Message;
 
+    /// <summary>
+    /// 等価性を判定する
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
     public override bool Equals(object? obj) => obj is Error other && Equals(other);
 
+    /// <summary>
+    /// ハッシュコードを生成する
+    /// </summary>
+    /// <returns></returns>
     public override int GetHashCode() => HashCode.Combine(Code, Message);
 
+    /// <summary>
+    /// 演算子で等価性を判定する
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <returns></returns>
     public static bool operator ==(Error left, Error right) => left.Equals(right);
 
-    public static bool operator !=(Error left, Error right) => !left.Equals(right);
+    /// <summary>
+    /// 演算子で等価性を判定する
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <returns></returns>
+    public static bool operator !=(Error left, Error right) => !(left == right);
 
+    /// <summary>
+    /// 文字列に変換する
+    /// </summary>
+    /// <returns></returns>
     public override string ToString() => Code.Length == 0 ? "(none)" : $"{Code}: {Message}";
 }
