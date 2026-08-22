@@ -11,10 +11,28 @@ namespace DesignShowcase.SampleApp;
 /// </summary>
 public sealed class Order : Entity<Guid>
 {
+    /// <summary>
+    /// 単価
+    /// </summary>
     public Money UnitPrice { get; }
+
+    /// <summary>
+    /// 数量
+    /// </summary>
     public int Quantity { get; }
+
+    /// <summary>
+    /// 会員かどうか
+    /// </summary>
     public bool IsMember { get; }
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="unitPrice"></param>
+    /// <param name="quantity"></param>
+    /// <param name="isMember"></param>
     private Order(Guid id, Money unitPrice, int quantity, bool isMember) : base(id)
     {
         UnitPrice = unitPrice;
@@ -23,7 +41,7 @@ public sealed class Order : Entity<Guid>
     }
 
     /// <summary>
-    /// 数量が1以上であることを検証してから生成する。
+    /// 数量が1以上であることを検証してから生成するファクトリメソッド。
     /// 「数量が0以下」は起こりうる入力ミスなので、例外ではなくResultで表現する。
     /// </summary>
     public static Result<Order> Create(Money unitPrice, int quantity, bool isMember)

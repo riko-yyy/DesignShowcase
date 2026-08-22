@@ -8,6 +8,11 @@ namespace DesignShowcase.SampleApp;
 /// </summary>
 public static class OrderInputParser
 {
+    /// <summary>
+    /// 文字列の単価をパースしてその結果を返す
+    /// </summary>
+    /// <param name="raw"></param>
+    /// <returns></returns>
     public static Result<decimal> ParseUnitPrice(string raw)
     {
         if (!decimal.TryParse(raw, out var value))
@@ -25,6 +30,11 @@ public static class OrderInputParser
         return Result<decimal>.Success(value);
     }
 
+    /// <summary>
+    /// 文字列の数量をパースしてその結果を返す
+    /// </summary>
+    /// <param name="raw"></param>
+    /// <returns></returns>
     public static Result<int> ParseQuantity(string raw)
     {
         if (!int.TryParse(raw, out var value))
