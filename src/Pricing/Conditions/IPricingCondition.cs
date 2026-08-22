@@ -10,5 +10,10 @@ namespace DesignShowcase.Pricing.Conditions;
 /// </summary>
 public interface IPricingCondition
 {
+    /// <summary>
+    /// 条件を満たしているかどうか
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
     bool IsSatisfiedBy(PricingContext context);
 }
