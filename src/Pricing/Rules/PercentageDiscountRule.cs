@@ -14,6 +14,11 @@ public sealed class PercentageDiscountRule : IPricingRule
 {
     private readonly PercentageAdjustmentRule _inner;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="percentageOff"></param>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public PercentageDiscountRule(decimal percentageOff)
     {
         if (percentageOff is < 0 or > 100)
@@ -25,6 +30,12 @@ public sealed class PercentageDiscountRule : IPricingRule
         _inner = new PercentageAdjustmentRule(-percentageOff);
     }
 
+    /// <summary>
+    /// 割合に応じて割引し、料金を調整する
+    /// </summary>
+    /// <param name="price"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public Result<Money> Apply(Money price, PricingContext context) =>
         _inner.Apply(price, context);
 }

@@ -15,6 +15,11 @@ public sealed class PercentageEnhancementRule : IPricingRule
 {
     private readonly PercentageAdjustmentRule _inner;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="percentageBoost"></param>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public PercentageEnhancementRule(decimal percentageBoost)
     {
         if (percentageBoost < 0)
@@ -26,6 +31,12 @@ public sealed class PercentageEnhancementRule : IPricingRule
         _inner = new PercentageAdjustmentRule(percentageBoost);
     }
 
+    /// <summary>
+    /// 割合に応じて増額し、料金を調整する
+    /// </summary>
+    /// <param name="price"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public Result<Money> Apply(Money price, PricingContext context) =>
         _inner.Apply(price, context);
 }
