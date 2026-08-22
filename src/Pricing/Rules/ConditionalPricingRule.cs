@@ -17,12 +17,23 @@ public sealed class ConditionalPricingRule : IPricingRule
     private readonly IPricingCondition _condition;
     private readonly IPricingRule _rule;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="condition"></param>
+    /// <param name="rule"></param>
     public ConditionalPricingRule(IPricingCondition condition, IPricingRule rule)
     {
         _condition = condition;
         _rule = rule;
     }
 
+    /// <summary>
+    /// 条件を満たした場合に対応する金額の調整を行い、満たさない場合は価格はそのまま調整なしとする
+    /// </summary>
+    /// <param name="price"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public Result<Money> Apply(Money price, PricingContext context) =>
         _condition.IsSatisfiedBy(context)
             ? _rule.Apply(price, context)
