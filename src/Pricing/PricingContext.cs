@@ -12,9 +12,21 @@ namespace DesignShowcase.Pricing;
 /// </summary>
 public sealed class PricingContext : ValueObject
 {
+    /// <summary>
+    /// 数量
+    /// </summary>
     public int Quantity { get; }
+    /// <summary>
+    /// 会員かどうか
+    /// </summary>
     public bool IsMember { get; }
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="quantity"></param>
+    /// <param name="isMember"></param>
+    /// <exception cref="ArgumentException"></exception>
     public PricingContext(int quantity, bool isMember)
     {
         if (quantity < 0)
