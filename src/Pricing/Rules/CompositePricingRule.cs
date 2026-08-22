@@ -18,11 +18,21 @@ public sealed class CompositePricingRule : IPricingRule
 {
     private readonly IReadOnlyList<IPricingRule> _rules;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="rules"></param>
     public CompositePricingRule(IEnumerable<IPricingRule> rules)
     {
         _rules = rules.ToList();
     }
 
+    /// <summary>
+    /// ルールを順に適用し、金額を調整する
+    /// </summary>
+    /// <param name="price"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public Result<Money> Apply(Money price, PricingContext context) =>
         _rules.Aggregate(
             Result<Money>.Success(price),
