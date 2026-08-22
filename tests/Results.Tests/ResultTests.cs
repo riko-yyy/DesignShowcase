@@ -59,10 +59,33 @@ public class ResultTests
     }
 
     [Fact]
+    public void ResultへのBindで成功していれば次の処理が実行され値を返す()
+    {
+        var called = false;
+
+        var result = Result.Success().Bind(() =>
+        {
+            called = true;
+            return Result<int>.Success(42);
+        });
+
+        Assert.True(called);
+        Assert.True(result.IsSuccess);
+        Assert.Equal(42, result.Value);
+    }
+
+    [Fact]
     public void ResultへのBindで失敗時はErrorを引き継ぐ()
     {
-        var result = Result.Failure(SampleError).Bind(() => Result.Success(42));
+        var called = false;
 
+        var result = Result.Failure(SampleError).Bind(() =>
+        {
+            called = true;
+            return Result<int>.Success(42);
+        });
+
+        Assert.False(called);
         Assert.True(result.IsFailure);
         Assert.Equal(SampleError, result.Error);
     }
