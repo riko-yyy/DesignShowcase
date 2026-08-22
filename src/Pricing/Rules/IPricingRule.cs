@@ -13,5 +13,11 @@ namespace DesignShowcase.Pricing.Rules;
 /// </summary>
 public interface IPricingRule
 {
+    /// <summary>
+    /// 料金を調整する
+    /// </summary>
+    /// <param name="price"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     Result<Money> Apply(Money price, PricingContext context);
 }

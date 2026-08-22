@@ -11,13 +11,26 @@ namespace DesignShowcase.Pricing.Rules;
 /// </summary>
 public sealed class FixedAmountAdjustmentRule : IPricingRule
 {
+    /// <summary>
+    /// 割引/増額の固定額
+    /// </summary>
     private readonly decimal _amount;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="amount"></param>
     public FixedAmountAdjustmentRule(decimal amount)
     {
         _amount = amount;
     }
 
+    /// <summary>
+    /// 固定額を割引/増額し料金を調整する
+    /// </summary>
+    /// <param name="price"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public Result<Money> Apply(Money price, PricingContext context)
     {
         var newAmount = price.Amount + _amount;
