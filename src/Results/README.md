@@ -41,3 +41,18 @@ Result<decimal> total = order
     .Bind(o => ValidateOrder(o))       // 検証自体が失敗しうるのでBind
     .Map(o => o.CalculateTotal());     // 計算は失敗しないのでMap
 ```
+
+## Bindは3パターンのみ提供している
+
+`Bind`は以下の3つの入出力の組み合わせを提供しています。
+
+| メソッド | 入力 | 出力 |
+|---|---|---|
+| `Result.Bind(Func<Result> next)` | 値なし | 値なし |
+| `Result.Bind<T>(Func<Result<T>> next)` | 値なし | 値あり |
+| `Result<T>.Bind<TNew>(Func<T, Result<TNew>> binder)` | 値あり | 値あり |
+
+「値あり→値なし」(値を使って検証だけしたいが、結果自体は値を持たない)の
+組み合わせは意図的に含めていません。既存の3パターンや`Map`の組み合わせで
+大半のケースは表現できるため、需要が薄い機能をあらかじめ用意する必要は
+ないと判断しています。

@@ -19,13 +19,29 @@ public sealed class Result<T> : Result
             : throw new InvalidOperationException(
                 "失敗したResultからValueを取得することはできません。先にIsSuccessを確認してください。");
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="isSuccess"></param>
+    /// <param name="value"></param>
+    /// <param name="error"></param>
     private Result(bool isSuccess, T? value, Error error) : base(isSuccess, error)
     {
         _value = value;
     }
 
+    /// <summary>
+    /// 成功した結果を生成するファクトリメソッド
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static Result<T> Success(T value) => new(true, value, Error.None);
 
+    /// <summary>
+    /// 失敗した結果を生成するファクトリメソッド
+    /// </summary>
+    /// <param name="error"></param>
+    /// <returns></returns>
     public static Result<T> Failure(Error error) => new(false, default, error);
 
     /// <summary>
