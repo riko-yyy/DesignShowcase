@@ -1,5 +1,7 @@
 # Design Showcase — 言語非依存の設計思考を形にする
 
+[![CI](https://github.com/riko-yyy/DesignShowcase/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/riko-yyy/DesignShowcase/actions/workflows/ci.yml)
+
 > C# の実務経験で培った「構造設計」の考え方を、特定言語・特定フレームワークへの依存を極力排除した形で実装したものです。
 > ここにあるコードはC#で書かれていますが、伝えたいのは**C#の書き方ではなく、どの言語でも通用する設計上の判断軸**です。
 
