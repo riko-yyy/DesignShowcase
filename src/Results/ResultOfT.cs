@@ -38,11 +38,12 @@ public sealed class Result<T> : Result
     public static Result<T> Success(T value) => new(true, value, Error.None);
 
     /// <summary>
-    /// 失敗した結果を生成するファクトリメソッド
+    /// 失敗した結果を生成するファクトリメソッド。
+    /// 基底のResult.Failureを意図的に隠し、Result&lt;T&gt;.Failureで型付きの結果を返す。
     /// </summary>
     /// <param name="error"></param>
     /// <returns></returns>
-    public static Result<T> Failure(Error error) => new(false, default, error);
+    public static new Result<T> Failure(Error error) => new(false, default, error);
 
     /// <summary>
     /// 成功していれば値を変換する。失敗していればErrorを引き継いだまま伝播する。
