@@ -70,4 +70,4 @@ dotnet test
 
 - [ ] ドメインイベントの発行・蓄積の仕組みを `BuildingBlocks` に追加
 - [ ] バリデーション結果を蓄積できる仕組みを `Results` に追加(fail-fastではなくaccumulate)
-- [ ] GitHub Actionsによるビルド・テストの自動化
+- [x] GitHub Actionsによるビルド・テストの自動化
